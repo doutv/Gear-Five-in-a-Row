@@ -1,5 +1,5 @@
 [package]
-name = "tic-tac-toe-io"
+name = "five-in-a-row-io"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "tic-tac-toe"
+name = "five-in-a-row"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
@@ -7,11 +7,11 @@ authors.workspace = true
 
 [dependencies]
 gstd = { workspace = true }
-tic-tac-toe-io.workspace = true
+five-in-a-row-io.workspace = true
 
 [build-dependencies]
 gmeta.workspace = true
-tic-tac-toe-io.workspace = true
+five-in-a-row-io.workspace = true
 gear-wasm-builder.workspace = true
 
 [dev-dependencies]

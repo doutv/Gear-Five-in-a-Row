@@ -1,5 +1,5 @@
 use gstd::{collections::HashMap, debug, exec, msg, prelude::*, ActorId};
-use tic_tac_toe_io::{
+use five_in_a_row_io::{
     Config, GameAction, GameInit, GameInstance, GameReply, GameResult, Mark, StateQuery, StateReply,
 };
 static mut GAME: Option<Game> = None;
