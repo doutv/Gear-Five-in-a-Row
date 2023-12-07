@@ -3,7 +3,7 @@ resolver = "2"
 # Keep in the lexicographic order!
 # Remove a member if it's used as a dependency in the workspace.
 members = [
-    "five-in-a-row",
+    "contracts",
 ]
 
 [workspace.package]
@@ -16,7 +16,7 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-five-in-a-row-io.path = "five-in-a-row/io"
+five-in-a-row-io.path = "contracts/io"
 # Gear
 
 gstd = { git = "https://github.com/gear-tech/gear", tag = "v1.0.1" }
