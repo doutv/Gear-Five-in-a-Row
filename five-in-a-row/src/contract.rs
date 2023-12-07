@@ -1,7 +1,7 @@
-use gstd::{collections::HashMap, debug, exec, msg, prelude::*, ActorId};
 use five_in_a_row_io::{
     Config, GameAction, GameInit, GameInstance, GameReply, GameResult, Mark, StateQuery, StateReply,
 };
+use gstd::{collections::HashMap, debug, exec, msg, prelude::*, ActorId};
 static mut GAME: Option<Game> = None;
 
 #[derive(Debug, Default)]
@@ -12,19 +12,10 @@ struct Game {
     pub messages_allowed: bool,
 }
 
-pub const VICTORIES: [[usize; 3]; 8] = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-];
+pub const BOARD_SIZE: usize = 9;
 
 #[no_mangle]
-extern fn init() {
+extern "C" fn init() {
     let init_msg: GameInit = msg::load().expect("Unable to load the message");
 
     unsafe {
@@ -55,7 +46,7 @@ impl Game {
             (Mark::X, Mark::O)
         };
         let mut game_instance = GameInstance {
-            board: vec![None; 9],
+            board: vec![None; BOARD_SIZE * BOARD_SIZE], // 9x9 board
             player_mark,
             bot_mark,
             last_time: exec::block_timestamp(),
@@ -63,8 +54,9 @@ impl Game {
             game_over: false,
         };
 
+        // If bot first, it mark on the center of the board
         if bot_mark == Mark::X {
-            game_instance.board[4] = Some(Mark::X);
+            game_instance.board[BOARD_SIZE * BOARD_SIZE / 2] = Some(Mark::X);
         }
 
         self.current_games.insert(msg_source, game_instance.clone());
@@ -98,7 +90,7 @@ impl Game {
 
         game_instance.last_time = exec::block_timestamp();
 
-        if let Some(mark) = get_result(&game_instance.board.clone()) {
+        if let Some(mark) = get_result(step as usize, &game_instance.board.clone()) {
             game_instance.game_over = true;
             if mark == game_instance.player_mark {
                 game_instance.game_result = Some(GameResult::Player);
@@ -123,7 +115,7 @@ impl Game {
             game_instance.board[step_num] = Some(game_instance.bot_mark);
         }
 
-        let win = get_result(&game_instance.board.clone());
+        let win = get_result(bot_step.map_or(41, |x| x), &game_instance.board.clone());
 
         if let Some(mark) = win {
             game_instance.game_over = true;
@@ -170,7 +162,7 @@ impl Game {
         match bot_step {
             Some(step_num) => {
                 game_instance.board[step_num] = Some(game_instance.bot_mark);
-                let win = get_result(&game_instance.board.clone());
+                let win = get_result(step_num, &game_instance.board.clone());
                 if let Some(mark) = win {
                     game_instance.game_over = true;
                     if mark == game_instance.player_mark {
@@ -303,109 +295,74 @@ fn turn() -> u8 {
 }
 
 fn make_move(game: &mut GameInstance) -> Option<usize> {
-    match game.bot_mark {
-        Mark::O => {
-            // if on any of the winning lines there are 2 own pieces and 0 strangers
-            // make move
-            let step = check_line(&game.board, 2, 0);
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-
-            // if on any of the winning lines there are 2 stranger pieces and 0 own
-            // make move
-            let step = check_line(&game.board, 0, 2);
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-            // if on any of the winning lines there are 1 own pieces and 0 strangers
-            // make move
-            let step = check_line(&game.board, 1, 0);
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-            // if the center is empty, then we occupy the center
-            if game.board[4] != Some(Mark::O) && game.board[4] != Some(Mark::X) {
-                return Some(4);
-            }
-            // occupy the first cell
-            if game.board[0] != Some(Mark::O) && game.board[0] != Some(Mark::X) {
-                return Some(0);
-            }
-        }
-        Mark::X => {
-            // if on any of the winning lines there are 2 own pieces and 0 strangers
-            // make move
-            let step = check_line(&game.board, 0, 2);
-
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-            // if on any of the winning lines there are 2 stranger pieces and 0 own
-            // make move
-            let step = check_line(&game.board, 2, 0);
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-            // if on any of the winning lines there are 1 own pieces and 0 strangers
-            // make move
-            let step = check_line(&game.board, 0, 1);
-            debug!("Step {:?}", step);
-            if let Some(step_num) = step {
-                return Some(step_num);
-            }
-            // if the center is empty, then we occupy the center
-            if game.board[4] != Some(Mark::O) && game.board[4] != Some(Mark::X) {
-                return Some(4);
-            }
-            // occupy the first cell
-            if game.board[0] != Some(Mark::O) && game.board[0] != Some(Mark::X) {
-                return Some(0);
-            }
+    for step_size in 0..BOARD_SIZE * BOARD_SIZE {
+        if game.board[step_size as usize] == None {
+            return Some(step_size as usize);
         }
     }
     None
 }
 
-fn check_line(map: &[Option<Mark>], sum_o: u8, sum_x: u8) -> Option<usize> {
-    for line in VICTORIES.iter() {
-        let mut o = 0;
-        let mut x = 0;
-        for i in 0..3 {
-            if map[line[i]] == Some(Mark::O) {
-                o += 1;
-            }
-            if map[line[i]] == Some(Mark::X) {
-                x += 1;
-            }
-        }
 
-        if sum_o == o && sum_x == x {
-            for i in 0..3 {
-                if map[line[i]] != Some(Mark::O) && map[line[i]] != Some(Mark::X) {
-                    return Some(line[i]);
+// fn check_line(map: &[Option<Mark>], sum_o: u8, sum_x: u8) -> Option<usize> {
+//     for line in VICTORIES.iter() {
+//         let mut o = 0;
+//         let mut x = 0;
+//         for i in 0..3 {
+//             if map[line[i]] == Some(Mark::O) {
+//                 o += 1;
+//             }
+//             if map[line[i]] == Some(Mark::X) {
+//                 x += 1;
+//             }
+//         }
+
+//         if sum_o == o && sum_x == x {
+//             for i in 0..3 {
+//                 if map[line[i]] != Some(Mark::O) && map[line[i]] != Some(Mark::X) {
+//                     return Some(line[i]);
+//                 }
+//             }
+//         }
+//     }
+//     None
+// }
+
+fn get_result(last_step: usize, map: &[Option<Mark>]) -> Option<Mark> {
+    let row = last_step as i8 / BOARD_SIZE as i8;
+    let col = last_step as i8 % BOARD_SIZE as i8;
+
+    // Directions: horizontal, vertical, diagonal (down-right), diagonal (down-left)
+    let directions = [(1, 0), (0, 1), (1, 1), (-1, 1)];
+
+    for (dx, dy) in directions.iter() {
+        let mut count = 1;
+
+        // Check in both directions
+        for &dir in [-1, 1].iter() {
+            let (mut x, mut y) = (row as i8 + dir * dx, col as i8 + dir * dy);
+
+            while x >= 0 && x < BOARD_SIZE as i8 && y >= 0 && y < BOARD_SIZE as i8 {
+                match map[x as usize * BOARD_SIZE + y as usize] {
+                    Some(mark) if Some(mark) == map[last_step] => count += 1,
+                    _ => break,
                 }
+
+                x += dir * dx;
+                y += dir * dy;
             }
         }
-    }
-    None
-}
 
-fn get_result(map: &[Option<Mark>]) -> Option<Mark> {
-    for i in VICTORIES.iter() {
-        if map[i[0]] == Some(Mark::X) && map[i[1]] == Some(Mark::X) && map[i[2]] == Some(Mark::X) {
-            return Some(Mark::X);
-        }
-
-        if map[i[0]] == Some(Mark::O) && map[i[1]] == Some(Mark::O) && map[i[2]] == Some(Mark::O) {
-            return Some(Mark::O);
+        if count >= 5 {
+            return map[last_step];
         }
     }
+
     None
 }
 
 #[no_mangle]
-extern fn state() {
+extern "C" fn state() {
     let Game {
         admins,
         current_games,
