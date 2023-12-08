@@ -303,7 +303,6 @@ fn make_move(game: &mut GameInstance) -> Option<usize> {
     None
 }
 
-
 // fn check_line(map: &[Option<Mark>], sum_o: u8, sum_x: u8) -> Option<usize> {
 //     for line in VICTORIES.iter() {
 //         let mut o = 0;
@@ -332,7 +331,7 @@ fn get_result(last_step: usize, map: &[Option<Mark>]) -> Option<Mark> {
     let row = last_step as i8 / BOARD_SIZE as i8;
     let col = last_step as i8 % BOARD_SIZE as i8;
 
-    // Directions: horizontal, vertical, diagonal (down-right), diagonal (down-left)
+    // Directions: vertical, horizontal, diagonal (down-right), diagonal (down-left)
     let directions = [(1, 0), (0, 1), (1, 1), (-1, 1)];
 
     for (dx, dy) in directions.iter() {
@@ -404,4 +403,47 @@ fn send_messages(account: &ActorId, config: &Config) {
         config.time_interval,
     )
     .expect("Error in sending message");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_exact_five_consecutive_marks_horizontal() {
+        let mut map = vec![None; 81];
+        for i in 3..8 {
+            map[i] = Some(Mark::X);
+        }
+        assert_eq!(get_result(7, &map), Some(Mark::X));
+    }
+
+    #[test]
+    fn test_exact_five_consecutive_marks_diagonal() {
+        let mut map = vec![None; 81];
+        for i in 0..5 {
+            map[i * 10] = Some(Mark::X); // Set 5 diagonal
+        }
+        assert_eq!(get_result(40, &map), Some(Mark::X));
+    }
+
+    #[test]
+    fn test_exact_five_consecutive_marks_vertical() {
+        let mut map = vec![None; 81];
+        for i in 0..5 {
+            map[i * 9] = Some(Mark::O)
+        }
+        assert_eq!(get_result(2 * 9, &map), Some(Mark::O));
+    }
+
+    #[test]
+    fn test_no_five_consecutive_marks() {
+        let mut map = vec![None; 81];
+        map[0] = Some(Mark::O);
+        map[1] = Some(Mark::X);
+        map[2] = Some(Mark::X);
+        map[3] = Some(Mark::X);
+        map[4] = Some(Mark::X);
+        assert_eq!(get_result(2, &map), None);
+    }
 }
