@@ -1,7 +1,6 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
-import nodePolyfills from 'vite-plugin-node-stdlib-browser';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
 
@@ -54,7 +53,7 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [splitVendorChunkPlugin(), svgr(), react(), nodePolyfills(), eslint()],
+    plugins: [splitVendorChunkPlugin(), svgr(), react(), eslint()],
     assetsInclude: ['**/*.wasm?inline', '**/*.txt?inline'],
   };
 });

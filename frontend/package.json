@@ -4,6 +4,7 @@
   "private": true,
   "packageManager": "yarn@4.0.1",
   "type": "module",
+  "homepage": ".",
   "scripts": {
     "start": "yarn build:packages && vite --open",
     "build": "yarn build:packages && tsc && vite build",
@@ -22,22 +23,22 @@
     "./packages/*"
   ],
   "dependencies": {
-    "error-tracking": "workspace:@dapps-frontend/error-tracking",
-    "ui": "workspace:@dapps-frontend/ui",
     "@gear-js/api": "0.35.1",
     "@gear-js/react-hooks": "0.9.0",
     "@headlessui/react": "1.7.17",
     "@polkadot/api": "10.10.1",
     "@polkadot/extension-dapp": "0.46.5",
+    "@polkadot/extension-inject": "^0.46.6",
     "@polkadot/types": "10.10.1",
     "@polkadot/util": "12.3.2",
     "@polkadot/util-crypto": "12.5.1",
+    "@polkadot/wasm-crypto": "7.2.2",
     "@radix-ui/react-dialog": "1.0.4",
     "@radix-ui/react-scroll-area": "1.0.4",
-    "@polkadot/wasm-crypto": "7.2.2",
     "buffer": "6.0.3",
     "class-variance-authority": "0.6.1",
     "clsx": "1.2.1",
+    "error-tracking": "workspace:@dapps-frontend/error-tracking",
     "framer-motion": "10.16.2",
     "jotai": "2.2.1",
     "lodash.isequal": "^4.5.0",
@@ -47,7 +48,8 @@
     "react-gtm-module": "2.0.11",
     "react-router-dom": "6.10.0",
     "react-transition-group": "4.4.5",
-    "socket.io-client": "4.7.2"
+    "socket.io-client": "4.7.2",
+    "ui": "workspace:@dapps-frontend/ui"
   },
   "devDependencies": {
     "@types/lodash.isequal": "4.5.6",
@@ -59,7 +61,7 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.48.0",
     "eslint-config-react-app": "7.0.1",
-    "node-stdlib-browser": "1.2.0",
+    "node-stdlib-browser": "^1.2.0",
     "postcss": "8.4.29",
     "prettier": "3.0.3",
     "rollup-plugin-visualizer": "5.9.2",
@@ -68,7 +70,7 @@
     "typescript": "4.9.5",
     "vite": "4.4.9",
     "vite-plugin-eslint": "1.8.1",
-    "vite-plugin-node-stdlib-browser": "0.2.1",
+    "vite-plugin-node-stdlib-browser": "^0.2.1",
     "vite-plugin-svgr": "3.2.0"
   },
   "browserslist": {

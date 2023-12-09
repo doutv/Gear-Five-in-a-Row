@@ -1553,7 +1553,7 @@
     rxjs "^7.8.1"
     tslib "^2.6.2"
 
-"@polkadot/api@10.11.1", "@polkadot/api@^10.9.1":
+"@polkadot/api@10.11.1", "@polkadot/api@^10.11.1", "@polkadot/api@^10.9.1":
   version "10.11.1"
   resolved "https://registry.npmmirror.com/@polkadot/api/-/api-10.11.1.tgz#3667ae1cf2f9c1955e138438c313efdba081314d"
   integrity sha512-WEgUYvY90AHX9drmsvWQ4DDuqlE7h4x3f28K5eOoJF4dQ5AkWsFogxwJ4TH57POWLfyi8AIn6/f1vsqPtReDhA==
@@ -1598,6 +1598,19 @@
     "@polkadot/util-crypto" "^12.3.2"
     "@polkadot/x-global" "^12.3.2"
     tslib "^2.5.3"
+
+"@polkadot/extension-inject@^0.46.6":
+  version "0.46.6"
+  resolved "https://registry.npmmirror.com/@polkadot/extension-inject/-/extension-inject-0.46.6.tgz#0fa2b79d5f9b91ae2cc8d9c943af6e19bc2125c8"
+  integrity sha512-5lJzL/iQ9oUcIDcER22Hxdjj4S9CoWS09yQoAKkfAmZMuTJkL/j36m7AnpNPN5ohWoPyd1Yl/JfwtoLmtRoZog==
+  dependencies:
+    "@polkadot/api" "^10.11.1"
+    "@polkadot/rpc-provider" "^10.11.1"
+    "@polkadot/types" "^10.11.1"
+    "@polkadot/util" "^12.6.1"
+    "@polkadot/util-crypto" "^12.6.1"
+    "@polkadot/x-global" "^12.6.1"
+    tslib "^2.6.2"
 
 "@polkadot/keyring@^12.5.1", "@polkadot/keyring@^12.6.1":
   version "12.6.1"
@@ -1692,7 +1705,7 @@
   optionalDependencies:
     "@substrate/connect" "0.7.33"
 
-"@polkadot/rpc-provider@10.11.1", "@polkadot/rpc-provider@^10.9.1":
+"@polkadot/rpc-provider@10.11.1", "@polkadot/rpc-provider@^10.11.1", "@polkadot/rpc-provider@^10.9.1":
   version "10.11.1"
   resolved "https://registry.npmmirror.com/@polkadot/rpc-provider/-/rpc-provider-10.11.1.tgz#8d94e96bba71ee8bbce9baf407b411c523fc2f28"
   integrity sha512-86aDUOnaG42si0jSOAgn6Fs3F3rz57x+iNBK1JpM0PLL2XvmPuoMZL5dZwzqSIey3nVdGJqRYfnFquWuyQpnOQ==
@@ -1822,7 +1835,7 @@
     rxjs "^7.8.1"
     tslib "^2.6.2"
 
-"@polkadot/types@10.11.1", "@polkadot/types@^10.9.1":
+"@polkadot/types@10.11.1", "@polkadot/types@^10.11.1", "@polkadot/types@^10.9.1":
   version "10.11.1"
   resolved "https://registry.npmmirror.com/@polkadot/types/-/types-10.11.1.tgz#d2b8c747c103b0a5f725090980d4be10037ddef0"
   integrity sha512-4uKnzW2GZqNA5qRZpTPJ7z+G/ARTvXI89etv9xXXVttUdfTaYZsMf4rMuMThOAE/mAUn70LoH0JKthZLwzVgNQ==
@@ -5317,7 +5330,7 @@ node-releases@^2.0.14:
   resolved "https://registry.npmmirror.com/node-releases/-/node-releases-2.0.14.tgz#2ffb053bceb8b2be8495ece1ab6ce600c4461b0b"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
 
-node-stdlib-browser@1.2.0:
+node-stdlib-browser@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/node-stdlib-browser/-/node-stdlib-browser-1.2.0.tgz#5ddcfdf4063b88fb282979a1aa6ddab9728d5e4c"
   integrity sha512-VSjFxUhRhkyed8AtLwSCkMrJRfQ3e2lGtG3sP6FEgaLKBBbxM/dLfjRe1+iLhjvyLFW3tBQ8+c0pcOtXGbAZJg==
@@ -6628,7 +6641,7 @@ vite-plugin-eslint@1.8.1:
     "@types/eslint" "^8.4.5"
     rollup "^2.77.2"
 
-vite-plugin-node-stdlib-browser@0.2.1:
+vite-plugin-node-stdlib-browser@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmmirror.com/vite-plugin-node-stdlib-browser/-/vite-plugin-node-stdlib-browser-0.2.1.tgz#6a598b3e1fecde6cdabe9c80a29adaeebc53463b"
   integrity sha512-6u2i613Dkqj5KaTNIrnZvE6y3/awWAp0S5TjucTvGxdhetftB1Mgvblc+nwYzlw6sntPlac8UOC7ttXNh+LZKA==
