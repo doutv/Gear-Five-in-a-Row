@@ -14,3 +14,21 @@ cargo b -p "tic-tac-toe*"
 ```sh
 cargo t -p "tic-tac-toe*"
 ```
+
+### Config
+`sPerBlock`, `gasToRemoveGame`, `timeInterval` are used when removing game instance (game end).
+
+Pay attention to `gasToRemoveGame`, setting it too low may trigger Error in sending message.
+
+`turnDeadlineMs`: the maximum time for each turn in milisecond.
+Sample Config:
+```
+{
+    "Config": {
+        "sPerBlock": "3",
+        "gasToRemoveGame": "20,000,000,000",
+        "timeInterval": "20",
+        "turnDeadlineMs": "30,000"
+    }
+}
+```
