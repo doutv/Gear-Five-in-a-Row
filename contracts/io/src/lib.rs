@@ -159,7 +159,7 @@ pub struct GameInstance {
     pub game_result: Option<GameResult>,
 }
 
-/// Indicates tic-tac-toe board mark-state.
+/// Indicates Five-in-a-Row board mark-state.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Encode, Decode, TypeInfo)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
