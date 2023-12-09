@@ -12,10 +12,10 @@ export function Welcome({ children, className }: BaseComponentProps) {
     <ColumnsContainer className={styles.wrapper}>
       <ColumnLeft>
         <Heading className={styles.heading}>
-          <TextGradient>Tic Tac Toe game</TextGradient>
+          <TextGradient>Five in a Row game</TextGradient>
         </Heading>
         <HelpDescription className={styles.text}>
-          <p>A classic game of tic-tac-toe in which you compete not against a human, but against a smart contract.</p>
+          <p>A classic game of Five in a Row in which you compete not against a human, but against a smart contract.</p>
         </HelpDescription>
         <div className={styles.content}>{children}</div>
       </ColumnLeft>

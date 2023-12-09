@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Container className={styles.header__container}>
-        <Logo className={clsx(styles.header__logo, !account && styles['header__logo--center'])} label="Tic-Tac-Toe" />
+        <Logo className={clsx(styles.header__logo, !account && styles['header__logo--center'])} label="Five-in-a-Row" />
         <div className={styles.menu_wrapper}>
           {!!account && (
             <>

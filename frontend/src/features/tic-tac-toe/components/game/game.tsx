@@ -32,7 +32,7 @@ export function Game({ game, meta }: GameProps) {
               {gameResult === 'Draw' && "It's a draw"}
             </>
           ) : (
-            <TextGradient>Tic Tac Toe game</TextGradient>
+            <TextGradient>Five in a Row game</TextGradient>
           )}
         </>
       </Heading>

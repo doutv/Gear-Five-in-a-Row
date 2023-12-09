@@ -19,7 +19,7 @@
     display: block;
     margin: 0 -25px;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 2767px) {
       left: 0;
       right: 0;
       margin: 0 -16px;
@@ -33,7 +33,7 @@
     object-fit: cover;
     object-position: left center;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 2767px) {
       object-position: 0;
     }
   }
@@ -42,14 +42,14 @@
 .heading {
   line-height: 1;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 2767px) {
     font-size: 42px;
     text-align: center;
   }
 }
 
 .text {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 2767px) {
     margin-right: auto;
     margin-left: auto;
     font-size: 16px;
@@ -59,7 +59,7 @@
 }
 
 .content {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 2767px) {
     display: flex;
     justify-content: center;
     margin-top: 40px;
@@ -67,7 +67,7 @@
 }
 
 .wrapper {
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 2767px) {
     padding-top: 80px;
     max-height: calc(100vh - 80px);
     overflow: hidden;

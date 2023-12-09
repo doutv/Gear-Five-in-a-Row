@@ -13,7 +13,7 @@ export function NotAuthorized() {
       <div className={styles.content}>
         <div className={styles.header}>
           <Heading>
-            <TextGradient>Tic-Tac-Toe</TextGradient>
+            <TextGradient>Five in a Row</TextGradient>
           </Heading>
           <div>
             <Text size="lg">You are currently not part of the Vara Network Testnet.</Text>

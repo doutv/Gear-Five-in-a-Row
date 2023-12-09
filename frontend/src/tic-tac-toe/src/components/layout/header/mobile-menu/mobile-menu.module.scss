@@ -1,7 +1,7 @@
 .wrapper {
   display: none;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 2767px) {
     display: flex;
   }
 }
@@ -73,7 +73,7 @@
       --scale-open: 100%;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 2767px) {
       --y-closed: -32px;
       --y-open: 0px;
 
