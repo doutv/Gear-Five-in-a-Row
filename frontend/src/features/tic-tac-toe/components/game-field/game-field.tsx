@@ -33,8 +33,8 @@ export function GameField({ game, meta }: GameFieldProps) {
   const { checkBalance } = useCheckBalance();
   const { subscribe, unsubscribe, isOpened } = useSubscriptionOnGameMessage(meta);
 
-  const winnerRow = calculateWinner(board);
-  const winnerColor = winnerRow ? game.playerMark === board[winnerRow[0][0]] : false;
+  // const winnerRow = calculateWinner(board);
+  // const winnerColor = winnerRow ? game.playerMark === board[winnerRow[0][0]] : false;
 
   const onSelectCell = async (value: number) => {
     if (!meta || !account || !ADDRESS.GAME) {
@@ -92,20 +92,20 @@ export function GameField({ game, meta }: GameFieldProps) {
         <GameCell
           key={i}
           value={i}
-          disabled={Boolean(mark || winnerRow?.length) || !countdown?.isActive || !!game.gameResult}
+          disabled={Boolean(mark) || !countdown?.isActive || !!game.gameResult}
           isLoading={isLoading}
           onSelectCell={onSelectCell}>
           {mark && <GameMark mark={mark} className={clsx(styles.mark, mark === game.playerMark && styles.active)} />}
         </GameCell>
       ))}
-      {winnerRow && (
+      {/* {winnerRow && (
         <motion.div
           initial="enter"
           animate="center"
           variants={variantsGameMark}
           className={clsx(styles.line, styles[winnerRow[1]], winnerColor && styles['line--primary'])}
         />
-      )}
+      )} */}
     </div>
   );
 }

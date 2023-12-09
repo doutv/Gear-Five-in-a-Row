@@ -1,13 +1,14 @@
-.grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  grid-template-areas: 'a1 a2 a3' 'a4 a5 a6' 'a7 a8 a9';
+$gridSize: 9; // Define the size of your grid here.
 
-  @for $i from 1 through 9 {
+.grid {
+  display: grid;
+  grid-template-columns: repeat($gridSize, 1fr);
+  grid-template-rows: repeat($gridSize, 1fr);
+  gap: 4px;
+
+  @for $i from 1 through ($gridSize * $gridSize) {
     > *:nth-child(#{$i}) {
-      grid-area: a#{$i};
+      grid-area: 'a#{$i}';
     }
   }
 }

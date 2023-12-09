@@ -22,8 +22,8 @@
     "./packages/*"
   ],
   "dependencies": {
-    "error-tracking": "workspace:*",
-    "ui": "workspace:*",
+    "error-tracking": "workspace:@dapps-frontend/error-tracking",
+    "ui": "workspace:@dapps-frontend/ui",
     "@gear-js/api": "0.35.1",
     "@gear-js/react-hooks": "0.9.0",
     "@headlessui/react": "1.7.17",
@@ -34,6 +34,7 @@
     "@polkadot/util-crypto": "12.5.1",
     "@radix-ui/react-dialog": "1.0.4",
     "@radix-ui/react-scroll-area": "1.0.4",
+    "@polkadot/wasm-crypto": "7.2.2",
     "buffer": "6.0.3",
     "class-variance-authority": "0.6.1",
     "clsx": "1.2.1",
