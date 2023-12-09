@@ -1,29 +1,16 @@
 {
-  "name": "five-in-a-row",
-  "version": "1.0.1",
+  "name": "tic-tac-toe",
   "private": true,
-  "packageManager": "yarn@4.0.1",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "start": "yarn build:packages && vite --open",
     "build": "yarn build:packages && tsc && vite build",
-    "preview": "vite preview",
-    "bump": "yarn up --exact",
-    "bump:api": "yarn bump @gear-js/api",
-    "bump:hooks": "yarn bump @gear-js/react-hooks",
-    "bump:ui": "yarn bump @gear-js/ui",
-    "bump:vara-ui": "yarn bump @gear-js/vara-ui",
-    "bump:polkadot": "yarn bump @polkadot/api @polkadot/types",
-    "build:error-tracking": "yarn workspace @dapps-frontend/error-tracking build",
-    "build:ui": "yarn workspace @dapps-frontend/ui build",
-    "build:packages": "yarn build:error-tracking && yarn build:ui"
+    "preview": "vite preview"
   },
-  "workspaces": [
-    "./packages/*"
-  ],
   "dependencies": {
-    "error-tracking": "workspace:*",
-    "ui": "workspace:*",
+    "@dapps-frontend/error-tracking": "workspace:*",
+    "@dapps-frontend/ui": "workspace:*",
     "@gear-js/api": "0.35.1",
     "@gear-js/react-hooks": "0.9.0",
     "@headlessui/react": "1.7.17",
