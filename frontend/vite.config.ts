@@ -8,6 +8,7 @@ import svgr from 'vite-plugin-svgr';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
+    base: "./",
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
