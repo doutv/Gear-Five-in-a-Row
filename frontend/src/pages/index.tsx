@@ -6,7 +6,7 @@ import NotFoundPage from '@/pages/not-found';
 
 const routes = [
   { path: ROUTES.HOME, Page: Home },
-  { path: ROUTES.NOTFOUND, Page: NotFoundPage },
+  // { path: ROUTES.NOTFOUND, Page: NotFoundPage },
 ];
 
 export function Routing() {

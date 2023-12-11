@@ -9,8 +9,8 @@ export const ADDRESS = {
 };
 
 export const ROUTES = {
-  HOME: '/',
+  HOME: '*',
   LOGIN: '/login',
   // UNAUTHORIZED: '/not-authorized',
-  NOTFOUND: '*',
+  // NOTFOUND: '*',
 };
