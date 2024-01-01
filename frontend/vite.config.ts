@@ -1,9 +1,17 @@
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig, splitVendorChunkPlugin, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 import nodePolyfills from 'vite-plugin-node-stdlib-browser';
 import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
+
+// The type declarations don't match up the the very odd actual structure.
+import outputManifestRawImport, {
+  type OutputManifestParam,
+} from "rollup-plugin-output-manifest";
+type OutputManifestPlugin = (param?: OutputManifestParam) => Plugin;
+const outputManifest = (outputManifestRawImport as any)
+  .default as OutputManifestPlugin;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -25,6 +33,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'build',
       sourcemap: true,
+      // manifest: true,
       rollupOptions: {
         output: {
           manualChunks(id) {
@@ -55,7 +64,7 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [splitVendorChunkPlugin(), svgr(), react(), nodePolyfills(), eslint()],
+    plugins: [splitVendorChunkPlugin(), svgr(), react(), nodePolyfills(), eslint(), outputManifest({ filter: () => true })],
     assetsInclude: ['**/*.wasm?inline', '**/*.txt?inline'],
   };
 });

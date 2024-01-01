@@ -2702,6 +2702,11 @@
   resolved "https://registry.npmmirror.com/@types/node/-/node-18.16.19.tgz#cb03fca8910fdeb7595b755126a8a78144714eea"
   integrity sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==
 
+"@types/node@^13.9.1":
+  version "13.13.52"
+  resolved "https://registry.npmmirror.com/@types/node/-/node-13.13.52.tgz#03c13be70b9031baaed79481c0c0cfb0045e53f7"
+  integrity sha512-s3nugnZumCC//n4moGGe6tkNMyYEdaDBitVjwPxXmR5lnMG5dHePinH2EdxkG3Rh1ghFHHixAG4NJhpJW1rthQ==
+
 "@types/parse-json@^4.0.0":
   version "4.0.2"
   resolved "https://registry.npmmirror.com/@types/parse-json/-/parse-json-4.0.2.tgz#5950e50960793055845e956c427fc2b0d70c5239"
@@ -5982,6 +5987,14 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
+rollup-plugin-output-manifest@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/rollup-plugin-output-manifest/-/rollup-plugin-output-manifest-2.0.0.tgz#e6152ddeccb8b8669328aec98e9fac93b86b4f7b"
+  integrity sha512-RJJ/MzM2Sj65o63qs1aIwD+AofAhdYi5Hx1Pk8/Fn6dWxbcSlficfJLNGeYJ14CPi7CHvEHwgjs23LiFS/x/Dw==
+  dependencies:
+    "@types/node" "^13.9.1"
+    tslib "^1.10.0"
+
 rollup-plugin-visualizer@5.9.2:
   version "5.9.2"
   resolved "https://registry.npmmirror.com/rollup-plugin-visualizer/-/rollup-plugin-visualizer-5.9.2.tgz#f1aa2d9b1be8ebd6869223c742324897464d8891"
@@ -6418,7 +6431,7 @@ tsconfig-paths@^3.14.2:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1:
+tslib@^1.10.0, tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
